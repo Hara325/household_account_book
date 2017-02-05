@@ -1,0 +1,9 @@
+<% flash.each do |key, value| %>
+  <%= content_tag(:div, value, class: "#{key}") %>
+<% end %>
+
+<h1>家計簿をつける</h1>
+
+<%= render 'form', household: @household %>
+
+<%= link_to '戻る', root_path %>

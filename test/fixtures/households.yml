@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  use_date: 2016-12-23
+  category_id: 1
+  cost: 1
+  memo: MyText
+  use: MyString
+  user_id: 1
+
+two:
+  use_date: 2016-12-23
+  category_id: 1
+  cost: 1
+  memo: MyText
+  use: MyString
+  user_id: 1

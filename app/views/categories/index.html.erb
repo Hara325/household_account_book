@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>分類一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>分類名</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.category_name %></td>
+        <td><%= link_to '詳細', category %></td>
+        <td><%= link_to '編集', edit_category_path(category) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新規作成', new_category_path %>
+<%= link_to '戻る', root_path %>

@@ -1,0 +1,53 @@
+<h1><%= @title %></h1>
+
+ <table>
+   <thead>
+     <% if @title == '詳細' %>
+       <th>日付</th>
+       <th>分類</th>
+       <th>用途</th>
+       <th>費用</th>
+       <th>メモ</th>
+     <% else %>
+        <th></th>
+        <% (1..@disp_unit).each do |i| %>
+          <% if @title == '年間一覧' %>
+            <% param = (@year - DISP_YEAR + i) %>
+            <th><%= link_to param.to_s + '年', households_path(@households, title: @title, year: param) %></th>
+          <% elsif @title == '月間一覧' %>
+            <% param = i %>
+            <th><%= link_to (param).to_s + '月', households_path(@households, title: @title, year: @year, month: param) %></th>
+          <% end %>
+        <% end %>
+     <% end %>
+   </thead>
+   <tbody>
+     <% if @title == '詳細' %>
+        <% @households.each do |household| %>
+          <tr>
+            <td><%= household.use_date %></td>
+            <td><%= @category_hash[household.category_id] %></td>
+            <td><%= household.use %></td>
+            <td><%= household.cost %></td>
+            <td><%= household.memo %></td>
+          </tr>
+        <% end %>
+     <% else %>
+        <!-- 分類ごとの合計を出力 -->
+        <% Category.all.order(:id).each do |category| %>
+          <tr>
+            <td><%= category.category_name %></td>
+            <% (1..@disp_unit).each do |i| %>
+              <% parent_key = 0 %>
+              <% if @title == '年間一覧' %>
+                <% parent_key = @year - DISP_YEAR + i %>
+              <% elsif @title == '月間一覧' %>
+                <% parent_key = i %>
+              <% end %>
+              <td><%= @category_sum_hash[parent_key][category.id] %></td>
+            <% end %>
+          </tr>
+        <% end %>
+     <% end %>
+   </tbody>
+</table>

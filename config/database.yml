@@ -1,0 +1,29 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: household
+  pool: 5
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: household_test
+  pool: 5
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: household_production
+  pool: 5
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
